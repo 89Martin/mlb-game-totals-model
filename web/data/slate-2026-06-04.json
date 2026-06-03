@@ -1,0 +1,766 @@
+{
+  "date": "2026-06-04",
+  "season": 2026,
+  "generated_at": "2026-06-03T18:03:44.534545Z",
+  "bankroll": 1000.0,
+  "params": {
+    "market_blend": 0.55,
+    "min_edge": 0.04,
+    "kelly_fraction": 0.25,
+    "max_stake_frac": 0.05
+  },
+  "league": {
+    "woba": 0.3145,
+    "rg": 4.423,
+    "era": 4.115
+  },
+  "games": [
+    {
+      "gamePk": 823457,
+      "gameTime": "2026-06-04T17:05:00Z",
+      "status": "Preview",
+      "away": {
+        "id": 135,
+        "abbr": "SD",
+        "name": "San Diego Padres",
+        "short": "Padres",
+        "primary": "#2F241D",
+        "secondary": "#FFC425",
+        "logo": "https://www.mlbstatic.com/team-logos/135.svg"
+      },
+      "home": {
+        "id": 143,
+        "abbr": "PHI",
+        "name": "Philadelphia Phillies",
+        "short": "Phillies",
+        "primary": "#E81828",
+        "secondary": "#002D72",
+        "logo": "https://www.mlbstatic.com/team-logos/143.svg"
+      },
+      "away_sp": {
+        "name": "Lucas Giolito",
+        "ra9": 4.48,
+        "fip": 7.49,
+        "xera": 5.03
+      },
+      "home_sp": {
+        "name": "Zack Wheeler",
+        "ra9": 3.79,
+        "fip": 3.5,
+        "xera": 3.18
+      },
+      "model": {
+        "mu_total": 7.97,
+        "er_home": 4.25,
+        "er_away": 3.72
+      },
+      "pmf": [
+        0.006279,
+        0.021491,
+        0.042912,
+        0.065282,
+        0.083797,
+        0.095611,
+        0.1,
+        0.097799,
+        0.090665,
+        0.080459,
+        0.068852,
+        0.057134,
+        0.046175,
+        0.036475,
+        0.02824,
+        0.021481,
+        0.016084,
+        0.011875,
+        0.008656,
+        0.006238,
+        0.004448,
+        0.003142,
+        0.0022,
+        0.001528,
+        0.001053,
+        0.000721,
+        0.00049,
+        0.000332,
+        0.000223,
+        0.000149,
+        9.9e-05,
+        6.6e-05,
+        4.3e-05
+      ],
+      "park_factor": 102,
+      "weather": {
+        "applied": true,
+        "temp_f": 87.0,
+        "wind_mph": 5.7,
+        "wind_dir": 244,
+        "carry": -0.57
+      }
+    },
+    {
+      "gamePk": 824753,
+      "gameTime": "2026-06-04T17:35:00Z",
+      "status": "Preview",
+      "away": {
+        "id": 110,
+        "abbr": "BAL",
+        "name": "Baltimore Orioles",
+        "short": "Orioles",
+        "primary": "#DF4601",
+        "secondary": "#000000",
+        "logo": "https://www.mlbstatic.com/team-logos/110.svg"
+      },
+      "home": {
+        "id": 111,
+        "abbr": "BOS",
+        "name": "Boston Red Sox",
+        "short": "Red Sox",
+        "primary": "#BD3039",
+        "secondary": "#0C2340",
+        "logo": "https://www.mlbstatic.com/team-logos/111.svg"
+      },
+      "away_sp": {
+        "name": "Trevor Rogers",
+        "ra9": 4.41,
+        "fip": 4.91,
+        "xera": 4.62
+      },
+      "home_sp": {
+        "name": "TBD",
+        "ra9": 4.12,
+        "fip": null,
+        "xera": null
+      },
+      "model": {
+        "mu_total": 9.09,
+        "er_home": 4.7,
+        "er_away": 4.39
+      },
+      "pmf": [
+        0.003945,
+        0.014262,
+        0.030076,
+        0.048323,
+        0.06551,
+        0.078942,
+        0.0872,
+        0.090068,
+        0.088185,
+        0.082651,
+        0.074698,
+        0.065465,
+        0.055878,
+        0.046617,
+        0.038119,
+        0.030623,
+        0.024217,
+        0.018882,
+        0.014537,
+        0.011064,
+        0.008333,
+        0.006216,
+        0.004596,
+        0.003372,
+        0.002455,
+        0.001775,
+        0.001275,
+        0.00091,
+        0.000647,
+        0.000457,
+        0.000321,
+        0.000225,
+        0.000156
+      ],
+      "park_factor": 104,
+      "weather": {
+        "applied": true,
+        "temp_f": 84.3,
+        "wind_mph": 6.7,
+        "wind_dir": 250,
+        "carry": -0.91
+      }
+    },
+    {
+      "gamePk": 823542,
+      "gameTime": "2026-06-04T17:35:00Z",
+      "status": "Preview",
+      "away": {
+        "id": 114,
+        "abbr": "CLE",
+        "name": "Cleveland Guardians",
+        "short": "Guardians",
+        "primary": "#00385D",
+        "secondary": "#E50022",
+        "logo": "https://www.mlbstatic.com/team-logos/114.svg"
+      },
+      "home": {
+        "id": 147,
+        "abbr": "NYY",
+        "name": "New York Yankees",
+        "short": "Yankees",
+        "primary": "#0C2340",
+        "secondary": "#C4CED4",
+        "logo": "https://www.mlbstatic.com/team-logos/147.svg"
+      },
+      "away_sp": {
+        "name": "Slade Cecconi",
+        "ra9": 4.35,
+        "fip": 4.56,
+        "xera": 4.62
+      },
+      "home_sp": {
+        "name": "Carlos Rod\u00f3n",
+        "ra9": 3.98,
+        "fip": 3.94,
+        "xera": 3.16
+      },
+      "model": {
+        "mu_total": 8.84,
+        "er_home": 4.92,
+        "er_away": 3.92
+      },
+      "pmf": [
+        0.004367,
+        0.015608,
+        0.032543,
+        0.051699,
+        0.069297,
+        0.082564,
+        0.090174,
+        0.09209,
+        0.089149,
+        0.082613,
+        0.073823,
+        0.063968,
+        0.053986,
+        0.044531,
+        0.036003,
+        0.028597,
+        0.02236,
+        0.017238,
+        0.013122,
+        0.009874,
+        0.007353,
+        0.005423,
+        0.003965,
+        0.002876,
+        0.00207,
+        0.00148,
+        0.001051,
+        0.000742,
+        0.000521,
+        0.000364,
+        0.000253,
+        0.000175,
+        0.000121
+      ],
+      "park_factor": 100,
+      "weather": {
+        "applied": true,
+        "temp_f": 78.5,
+        "wind_mph": 8.6,
+        "wind_dir": 155,
+        "carry": 0.17
+      }
+    },
+    {
+      "gamePk": 823779,
+      "gameTime": "2026-06-04T18:10:00Z",
+      "status": "Preview",
+      "away": {
+        "id": 137,
+        "abbr": "SF",
+        "name": "San Francisco Giants",
+        "short": "Giants",
+        "primary": "#FD5A1E",
+        "secondary": "#27251F",
+        "logo": "https://www.mlbstatic.com/team-logos/137.svg"
+      },
+      "home": {
+        "id": 158,
+        "abbr": "MIL",
+        "name": "Milwaukee Brewers",
+        "short": "Brewers",
+        "primary": "#12284B",
+        "secondary": "#FFC52F",
+        "logo": "https://www.mlbstatic.com/team-logos/158.svg"
+      },
+      "away_sp": {
+        "name": "Adrian Houser",
+        "ra9": 4.77,
+        "fip": 5.27,
+        "xera": 5.66
+      },
+      "home_sp": {
+        "name": "TBD",
+        "ra9": 4.12,
+        "fip": null,
+        "xera": null
+      },
+      "model": {
+        "mu_total": 8.8,
+        "er_home": 4.97,
+        "er_away": 3.83
+      },
+      "pmf": [
+        0.004441,
+        0.015843,
+        0.032971,
+        0.052278,
+        0.069939,
+        0.083169,
+        0.090661,
+        0.092411,
+        0.089288,
+        0.082584,
+        0.073655,
+        0.063701,
+        0.053658,
+        0.044175,
+        0.035647,
+        0.02826,
+        0.022054,
+        0.01697,
+        0.012893,
+        0.009683,
+        0.007197,
+        0.005298,
+        0.003866,
+        0.002799,
+        0.002011,
+        0.001435,
+        0.001017,
+        0.000717,
+        0.000502,
+        0.00035,
+        0.000243,
+        0.000168,
+        0.000115
+      ],
+      "park_factor": 99,
+      "weather": {
+        "applied": true,
+        "temp_f": 83.2,
+        "wind_mph": 8.6,
+        "wind_dir": 213,
+        "carry": 0.1
+      }
+    },
+    {
+      "gamePk": 824919,
+      "gameTime": "2026-06-04T23:15:00Z",
+      "status": "Preview",
+      "away": {
+        "id": 141,
+        "abbr": "TOR",
+        "name": "Toronto Blue Jays",
+        "short": "Blue Jays",
+        "primary": "#134A8E",
+        "secondary": "#1D2D5C",
+        "logo": "https://www.mlbstatic.com/team-logos/141.svg"
+      },
+      "home": {
+        "id": 144,
+        "abbr": "ATL",
+        "name": "Atlanta Braves",
+        "short": "Braves",
+        "primary": "#CE1141",
+        "secondary": "#13274F",
+        "logo": "https://www.mlbstatic.com/team-logos/144.svg"
+      },
+      "away_sp": {
+        "name": "TBD",
+        "ra9": 4.12,
+        "fip": null,
+        "xera": null
+      },
+      "home_sp": {
+        "name": "Chris Sale",
+        "ra9": 3.56,
+        "fip": 2.96,
+        "xera": 3.18
+      },
+      "model": {
+        "mu_total": 8.61,
+        "er_home": 4.94,
+        "er_away": 3.67
+      },
+      "pmf": [
+        0.004805,
+        0.016988,
+        0.035034,
+        0.055048,
+        0.07298,
+        0.086004,
+        0.092905,
+        0.093843,
+        0.089854,
+        0.082357,
+        0.07279,
+        0.062385,
+        0.052075,
+        0.042485,
+        0.033974,
+        0.026691,
+        0.020642,
+        0.01574,
+        0.01185,
+        0.00882,
+        0.006496,
+        0.004739,
+        0.003427,
+        0.002458,
+        0.00175,
+        0.001238,
+        0.000869,
+        0.000607,
+        0.000422,
+        0.000291,
+        0.0002,
+        0.000137,
+        9.3e-05
+      ],
+      "park_factor": 101,
+      "weather": {
+        "applied": true,
+        "temp_f": 81.1,
+        "wind_mph": 7.3,
+        "wind_dir": 130,
+        "carry": 0.97
+      }
+    },
+    {
+      "gamePk": 823698,
+      "gameTime": "2026-06-04T23:40:00Z",
+      "status": "Preview",
+      "away": {
+        "id": 118,
+        "abbr": "KC",
+        "name": "Kansas City Royals",
+        "short": "Royals",
+        "primary": "#004687",
+        "secondary": "#BD9B60",
+        "logo": "https://www.mlbstatic.com/team-logos/118.svg"
+      },
+      "home": {
+        "id": 142,
+        "abbr": "MIN",
+        "name": "Minnesota Twins",
+        "short": "Twins",
+        "primary": "#002B5C",
+        "secondary": "#D31145",
+        "logo": "https://www.mlbstatic.com/team-logos/142.svg"
+      },
+      "away_sp": {
+        "name": "TBD",
+        "ra9": 4.12,
+        "fip": null,
+        "xera": null
+      },
+      "home_sp": {
+        "name": "TBD",
+        "ra9": 4.12,
+        "fip": null,
+        "xera": null
+      },
+      "model": {
+        "mu_total": 8.83,
+        "er_home": 4.49,
+        "er_away": 4.34
+      },
+      "pmf": [
+        0.004387,
+        0.015673,
+        0.032662,
+        0.051859,
+        0.069475,
+        0.082732,
+        0.09031,
+        0.09218,
+        0.089188,
+        0.082606,
+        0.073777,
+        0.063895,
+        0.053895,
+        0.044432,
+        0.035904,
+        0.028504,
+        0.022275,
+        0.017164,
+        0.013058,
+        0.009821,
+        0.007309,
+        0.005388,
+        0.003937,
+        0.002854,
+        0.002053,
+        0.001467,
+        0.001042,
+        0.000735,
+        0.000516,
+        0.00036,
+        0.00025,
+        0.000173,
+        0.000119
+      ],
+      "park_factor": 100,
+      "weather": {
+        "applied": true,
+        "temp_f": 81.9,
+        "wind_mph": 6.5,
+        "wind_dir": 229,
+        "carry": -0.17
+      }
+    },
+    {
+      "gamePk": 824672,
+      "gameTime": "2026-06-05T00:05:00Z",
+      "status": "Preview",
+      "away": {
+        "id": 133,
+        "abbr": "ATH",
+        "name": "Athletics",
+        "short": "Athletics",
+        "primary": "#003831",
+        "secondary": "#EFB21E",
+        "logo": "https://www.mlbstatic.com/team-logos/133.svg"
+      },
+      "home": {
+        "id": 112,
+        "abbr": "CHC",
+        "name": "Chicago Cubs",
+        "short": "Cubs",
+        "primary": "#0E3386",
+        "secondary": "#CC3433",
+        "logo": "https://www.mlbstatic.com/team-logos/112.svg"
+      },
+      "away_sp": {
+        "name": "TBD",
+        "ra9": 4.12,
+        "fip": null,
+        "xera": null
+      },
+      "home_sp": {
+        "name": "Shota Imanaga",
+        "ra9": 4.11,
+        "fip": 4.49,
+        "xera": 3.73
+      },
+      "model": {
+        "mu_total": 8.66,
+        "er_home": 4.39,
+        "er_away": 4.26
+      },
+      "pmf": [
+        0.004703,
+        0.01667,
+        0.034463,
+        0.054285,
+        0.072147,
+        0.085233,
+        0.092301,
+        0.093465,
+        0.089714,
+        0.082433,
+        0.073039,
+        0.062753,
+        0.052513,
+        0.042949,
+        0.03443,
+        0.027116,
+        0.021023,
+        0.01607,
+        0.012129,
+        0.00905,
+        0.006682,
+        0.004887,
+        0.003543,
+        0.002547,
+        0.001818,
+        0.001289,
+        0.000908,
+        0.000635,
+        0.000442,
+        0.000306,
+        0.000211,
+        0.000145,
+        9.9e-05
+      ],
+      "park_factor": 100,
+      "weather": {
+        "applied": true,
+        "temp_f": 76.9,
+        "wind_mph": 11.1,
+        "wind_dir": 236,
+        "carry": -0.95
+      }
+    },
+    {
+      "gamePk": 824185,
+      "gameTime": "2026-06-05T00:10:00Z",
+      "status": "Preview",
+      "away": {
+        "id": 134,
+        "abbr": "PIT",
+        "name": "Pittsburgh Pirates",
+        "short": "Pirates",
+        "primary": "#FDB827",
+        "secondary": "#27251F",
+        "logo": "https://www.mlbstatic.com/team-logos/134.svg"
+      },
+      "home": {
+        "id": 117,
+        "abbr": "HOU",
+        "name": "Houston Astros",
+        "short": "Astros",
+        "primary": "#002D62",
+        "secondary": "#EB6E1F",
+        "logo": "https://www.mlbstatic.com/team-logos/117.svg"
+      },
+      "away_sp": {
+        "name": "Jared Jones",
+        "ra9": 4.31,
+        "fip": 8.03,
+        "xera": 6.39
+      },
+      "home_sp": {
+        "name": "Kai-Wei Teng",
+        "ra9": 4.01,
+        "fip": 4.15,
+        "xera": 3.57
+      },
+      "model": {
+        "mu_total": 9.54,
+        "er_home": 4.55,
+        "er_away": 4.99
+      },
+      "pmf": [
+        0.003311,
+        0.012199,
+        0.026213,
+        0.042917,
+        0.059286,
+        0.072799,
+        0.081943,
+        0.086246,
+        0.086047,
+        0.082179,
+        0.075683,
+        0.067587,
+        0.058786,
+        0.049974,
+        0.04164,
+        0.034088,
+        0.027469,
+        0.021825,
+        0.017122,
+        0.013279,
+        0.010191,
+        0.007746,
+        0.005837,
+        0.004363,
+        0.003237,
+        0.002385,
+        0.001746,
+        0.00127,
+        0.000919,
+        0.000662,
+        0.000474,
+        0.000338,
+        0.00024
+      ],
+      "park_factor": 101,
+      "weather": {
+        "applied": true,
+        "temp_f": 86.1,
+        "wind_mph": 8.4,
+        "wind_dir": 107,
+        "carry": -0.56
+      }
+    },
+    {
+      "gamePk": 825076,
+      "gameTime": "2026-06-05T01:40:00Z",
+      "status": "Preview",
+      "away": {
+        "id": 119,
+        "abbr": "LAD",
+        "name": "Los Angeles Dodgers",
+        "short": "Dodgers",
+        "primary": "#005A9C",
+        "secondary": "#EF3E42",
+        "logo": "https://www.mlbstatic.com/team-logos/119.svg"
+      },
+      "home": {
+        "id": 109,
+        "abbr": "AZ",
+        "name": "Arizona Diamondbacks",
+        "short": "D-backs",
+        "primary": "#A71930",
+        "secondary": "#E3D4AD",
+        "logo": "https://www.mlbstatic.com/team-logos/109.svg"
+      },
+      "away_sp": {
+        "name": "Justin Wrobleski",
+        "ra9": 3.88,
+        "fip": 3.47,
+        "xera": 3.84
+      },
+      "home_sp": {
+        "name": "Ryne Nelson",
+        "ra9": 4.72,
+        "fip": 5.52,
+        "xera": 5.03
+      },
+      "model": {
+        "mu_total": 9.4,
+        "er_home": 3.85,
+        "er_away": 5.55
+      },
+      "pmf": [
+        0.003495,
+        0.0128,
+        0.02735,
+        0.044524,
+        0.061157,
+        0.07467,
+        0.083572,
+        0.087461,
+        0.086764,
+        0.082394,
+        0.07545,
+        0.066997,
+        0.057943,
+        0.048978,
+        0.040578,
+        0.03303,
+        0.026465,
+        0.020908,
+        0.01631,
+        0.012577,
+        0.009598,
+        0.007254,
+        0.005435,
+        0.004039,
+        0.00298,
+        0.002183,
+        0.001589,
+        0.00115,
+        0.000827,
+        0.000592,
+        0.000422,
+        0.000299,
+        0.000211
+      ],
+      "park_factor": 103,
+      "weather": {
+        "applied": true,
+        "temp_f": 102.0,
+        "wind_mph": 20.5,
+        "wind_dir": 252,
+        "carry": -0.31
+      }
+    }
+  ]
+}

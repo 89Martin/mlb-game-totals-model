@@ -1,0 +1,49 @@
+name: Build & deploy daily totals slate
+
+on:
+  schedule:
+    # times are UTC. MLB probables firm up through the morning ET, so refresh
+    # a couple of times: 13:00 UTC (~9am ET) and 17:00 UTC (~1pm ET).
+    - cron: "0 13 * * *"
+    - cron: "0 17 * * *"
+  workflow_dispatch:        # lets you trigger a rebuild by hand
+  push:
+    branches: [main]        # rebuild when you push changes
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# only one deploy at a time; let a newer run supersede an in-flight one
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build today's slate
+        run: python scripts/build_slate.py
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4

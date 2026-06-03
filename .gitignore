@@ -1,0 +1,15 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# local data cache (regenerated each run)
+data_cache/
+
+# large historical odds dataset (downloaded on demand for backtests)
+backtest/mlb_odds_dataset.json
+
+# OS
+.DS_Store
+Thumbs.db
+backtest/results_full.txt

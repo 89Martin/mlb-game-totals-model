@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MLB Game Totals Model — Bet Cards</title>
+<link rel="preconnect" href="https://www.mlbstatic.com" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="diamond">◆</span>
+    <div>
+      <h1>MLB Game Totals Model</h1>
+      <div class="subtitle" id="slate-date">Loading slate…</div>
+    </div>
+  </div>
+  <div class="controls">
+    <div class="datenav">
+      <button id="date-prev" class="navbtn" title="Previous day">◀</button>
+      <select id="date-select" class="picker"></select>
+      <button id="date-next" class="navbtn" title="Next day">▶</button>
+    </div>
+    <label class="kelly">
+      Stake
+      <select id="stake-select" class="picker">
+        <option value="1">Full Kelly</option>
+        <option value="0.5">½ Kelly</option>
+        <option value="0.25">¼ Kelly</option>
+        <option value="0.125">⅛ Kelly</option>
+        <option value="flat">Flat units</option>
+      </select>
+    </label>
+    <label class="kelly flatunit" id="flatunit-wrap" hidden>
+      Unit <span class="dollar">$</span>
+      <input type="number" id="flat-unit" min="0" step="5" value="20" />
+    </label>
+    <label class="kelly">
+      Min edge
+      <select id="edge-select" class="picker">
+        <option value="0.02">2%</option>
+        <option value="0.03">3%</option>
+        <option value="0.04" selected>4%</option>
+        <option value="0.05">5%</option>
+      </select>
+    </label>
+    <label class="bankroll">
+      Bankroll
+      <span class="dollar">$</span>
+      <input type="number" id="bankroll" min="0" step="50" value="1000" />
+    </label>
+    <div class="meta" id="meta"></div>
+  </div>
+</header>
+
+<main id="cards" class="cards"></main>
+
+<footer class="foot">
+  <span id="footnote"></span>
+</footer>
+
+<template id="card-tpl">
+  <article class="card">
+    <div class="card-accent"></div>
+    <div class="card-head">
+      <div class="matchup">
+        <div class="team away">
+          <img class="logo" alt="" />
+          <div class="tname"><span class="abbr"></span><span class="full"></span></div>
+        </div>
+        <div class="at">@</div>
+        <div class="team home">
+          <img class="logo" alt="" />
+          <div class="tname"><span class="abbr"></span><span class="full"></span></div>
+        </div>
+      </div>
+      <div class="gtime"></div>
+    </div>
+
+    <div class="pitchers">
+      <div class="sp away-sp"></div>
+      <div class="sp home-sp"></div>
+    </div>
+
+    <div class="totalrow">
+      <label class="linebox">Total line
+        <input class="oin line-in" inputmode="decimal" placeholder="8.5" />
+      </label>
+      <div class="projbox">
+        <span class="projlabel">Model proj</span>
+        <span class="projval"></span>
+      </div>
+    </div>
+
+    <div class="probbar"><div class="probfill over-fill"></div><div class="probfill under-fill"></div></div>
+    <div class="probrow">
+      <span class="overp"></span>
+      <span class="env"></span>
+      <span class="underp"></span>
+    </div>
+
+    <div class="oddsgrid">
+      <div class="ohead"></div>
+      <div class="ohead">Best</div>
+      <div class="ohead">Sharp</div>
+      <div class="ohead">Fair</div>
+      <div class="ohead">Edge</div>
+
+      <div class="orow-label over-label"><span class="dot over-dot"></span>Over</div>
+      <input class="oin over-best"  inputmode="numeric" placeholder="-110" />
+      <input class="oin over-sharp" inputmode="numeric" placeholder="-105" />
+      <div class="fair over-fair">—</div>
+      <div class="edge over-edge">—</div>
+
+      <div class="orow-label under-label"><span class="dot under-dot"></span>Under</div>
+      <input class="oin under-best"  inputmode="numeric" placeholder="-110" />
+      <input class="oin under-sharp" inputmode="numeric" placeholder="-115" />
+      <div class="fair under-fair">—</div>
+      <div class="edge under-edge">—</div>
+    </div>
+
+    <div class="rec"></div>
+  </article>
+</template>
+
+<script src="app.js"></script>
+</body>
+</html>
