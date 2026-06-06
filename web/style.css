@@ -73,7 +73,19 @@ body{
 .abbr{font-weight:800;font-size:16px;letter-spacing:.3px}
 .full{font-size:11px;color:var(--mut)}
 .at{color:var(--mut2);font-size:12px;font-weight:700;padding:0 2px}
-.gtime{font-size:11px;color:var(--mut2);white-space:nowrap;padding-top:4px}
+.head-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.gtime{font-size:11px;color:var(--mut2);white-space:nowrap}
+
+/* bet score chip */
+.betscore{display:flex;align-items:baseline;gap:5px;padding:3px 9px;border-radius:9px;
+  border:1px solid var(--line);background:#0f1626;line-height:1}
+.betscore .bs-num{font-size:17px;font-weight:800}
+.betscore .bs-lab{font-size:9px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.betscore.none{color:var(--mut2)}
+.betscore.weak{color:var(--mut);border-color:var(--line)}
+.betscore.lean{color:var(--warn);border-color:#5a4a18;background:#241d0c}
+.betscore.strong{color:#9fe9c4;border-color:#236647;background:var(--good-dim)}
+.betscore.max{color:#03200f;background:var(--good);border-color:var(--good)}
 
 .pitchers{display:flex;justify-content:space-between;gap:10px;padding:2px 18px 12px}
 .sp{font-size:12px;color:var(--mut);flex:1}

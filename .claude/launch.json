@@ -4,8 +4,8 @@
     {
       "name": "totals-web",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8770", "--directory", "web"],
-      "port": 8770
+      "runtimeArgs": ["-m", "http.server", "8793", "--directory", "web"],
+      "port": 8793
     }
   ]
 }

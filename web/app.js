@@ -135,6 +135,40 @@ function onOddsChange(game, root){
   recompute(game, root);
 }
 
+/* reference (market) probability for a side, used as the edge benchmark.
+   Priority: de-vig your two Best prices -> single Best price implied ->
+   de-vig the Sharp prices. So an edge appears as soon as you enter a line + a
+   Best price, with no sharp needed. */
+function refProb(bestSame, bestOther, sharpNov){
+  const [dh] = devigTwoWay(bestSame, bestOther);
+  if(dh != null) return dh;                 // both best sides -> clean no-vig
+  const imp = americanToProb(bestSame);
+  if(imp != null) return imp;               // single best price -> raw implied
+  return sharpNov;                          // fall back to sharp no-vig
+}
+
+/* Bet score 0-100: edge size (0-55) + model conviction (0-25) + sharp
+   confirmation (±20). Without a sharp price it tops out ~80; a sharp that
+   agrees pushes toward 100, one that disagrees drags it down. */
+function betScore(p, edge, refP, sharpNov, sharpPresent){
+  if(p == null || edge == null) return null;
+  const eC = Math.max(0, Math.min(edge / 0.08, 1));          // 8% edge = full
+  const vC = Math.max(0, Math.min((p - 0.5) / 0.12, 1));     // model conviction
+  let score = 100 * (0.55 * eC + 0.25 * vC);
+  if(sharpPresent && sharpNov != null && refP != null){
+    const agree = Math.max(-1, Math.min((sharpNov - refP) / 0.04, 1));
+    score += 20 * agree;
+  }
+  return Math.max(0, Math.min(Math.round(score), 100));
+}
+function scoreBand(s){
+  if(s == null) return ["", ""];
+  if(s >= 75) return ["MAX", "max"];
+  if(s >= 60) return ["STRONG", "strong"];
+  if(s >= 40) return ["LEAN", "lean"];
+  return ["WEAK", "weak"];
+}
+
 function recompute(game, root){
   const P = Object.assign({}, state.params, {kelly_fraction: state.kellyFraction});
   const BR = state.bankroll;
@@ -162,23 +196,28 @@ function recompute(game, root){
     env += ` · ${Math.round(game.weather.temp_f)}°`;
   root.querySelector(".env").textContent = env;
 
-  // sharp-book de-vig + blend (tempers model overconfidence)
-  const [oNov, uNov] = devigTwoWay(oSharp, uSharp);
-  const pOverFinal  = modelOver == null ? null : blendWithMarket(modelOver, oNov, P.market_blend);
+  // sharp-book de-vig + blend (optional; tempers model overconfidence)
+  const [oSharpNov] = devigTwoWay(oSharp, uSharp);
+  const uSharpNov = oSharpNov == null ? null : 1 - oSharpNov;
+  const sharpPresent = oSharpNov != null;
+  const pOverFinal  = modelOver == null ? null
+                    : (sharpPresent ? blendWithMarket(modelOver, oSharpNov, P.market_blend) : modelOver);
   const pUnderFinal = pOverFinal == null ? null : 1 - pOverFinal;
-  const uNovAdj = oNov == null ? null : 1 - oNov;
 
   const sides = [
-    {key:"over",  p:pOverFinal,  nov:oNov,    best:oBest, label:"Over " + (line ?? "?"),
+    {key:"over",  p:pOverFinal,  best:oBest, other:uBest, sharpNov:oSharpNov,
+     label:"Over " + (line ?? "?"),
      fairEl:root.querySelector(".over-fair"),  edgeEl:root.querySelector(".over-edge")},
-    {key:"under", p:pUnderFinal, nov:uNovAdj,  best:uBest, label:"Under " + (line ?? "?"),
+    {key:"under", p:pUnderFinal, best:uBest, other:oBest, sharpNov:uSharpNov,
+     label:"Under " + (line ?? "?"),
      fairEl:root.querySelector(".under-fair"), edgeEl:root.querySelector(".under-edge")},
   ];
 
-  let bestPlay = null;
+  let bestPlay = null, scoreSide = null;
   for(const s of sides){
     s.fairEl.textContent = fmtOdds(probToAmerican(s.p));
-    s.edge = (s.nov == null || s.p == null) ? null : s.p - s.nov;
+    s.refP = refProb(s.best, s.other, s.sharpNov);
+    s.edge = (s.refP == null || s.p == null) ? null : s.p - s.refP;
     const el = s.edgeEl;
     el.classList.remove("pos", "neg");
     if(s.edge == null){ el.textContent = "—"; }
@@ -186,6 +225,9 @@ function recompute(game, root){
       el.textContent = (s.edge >= 0 ? "+" : "") + (s.edge * 100).toFixed(1) + "%";
       el.classList.add(s.edge > 0 ? "pos" : "neg");
     }
+    // track the most favorable side for the bet score
+    if(s.edge != null && (scoreSide == null || s.edge > scoreSide.edge)) scoreSide = s;
+    // a play requires a real price to bet (Best) + qualifying edge
     if(s.edge != null && s.edge >= state.minEdge && s.best != null){
       let stake, frac;
       if(state.stakeMode === "flat"){
@@ -199,26 +241,36 @@ function recompute(game, root){
     }
   }
 
+  // ---- bet score chip ----
+  const score = scoreSide ? betScore(scoreSide.p, scoreSide.edge, scoreSide.refP,
+                                     scoreSide.sharpNov, sharpPresent) : null;
+  const [bsLab, bsCls] = scoreBand(score);
+  const bsEl = root.querySelector(".betscore");
+  bsEl.className = "betscore " + (bsCls || "none");
+  bsEl.querySelector(".bs-num").textContent = score == null ? "—" : score;
+  bsEl.querySelector(".bs-lab").textContent = bsLab;
+
   const rec = root.querySelector(".rec");
   if(bestPlay){
     const s = bestPlay.side;
     const units = (bestPlay.stake / (BR * 0.01)).toFixed(1);
+    const anchor = sharpPresent ? "" : " · raw model (no sharp)";
     rec.className = "rec play " + s.key;
     rec.innerHTML = `<span class="tag">Bet</span>
       <span><b>${s.label}</b> ${fmtOdds(s.best)} —
       <span class="stake">$${bestPlay.stake.toFixed(2)}</span>
-      <span class="units">(${units}u · ${pct(s.p)} · edge +${(s.edge*100).toFixed(1)}%)</span></span>`;
+      <span class="units">(${units}u · ${pct(s.p)} · edge +${(s.edge*100).toFixed(1)}%${anchor})</span></span>`;
     root.classList.add("is-bet");
   } else {
     rec.className = "rec";
     root.classList.remove("is-bet");
-    const haveSharp = oNov != null;
     const fairO = probToAmerican(pOverFinal), fairU = probToAmerican(pUnderFinal);
-    rec.innerHTML = haveSharp
-      ? `<span>No qualifying edge (need ≥ ${(state.minEdge*100).toFixed(0)}% vs sharp).
+    const haveBest = oBest != null || uBest != null;
+    rec.innerHTML = haveBest
+      ? `<span>No qualifying edge (need ≥ ${(state.minEdge*100).toFixed(0)}%).
          Fair: O ${fmtOdds(fairO)} / U ${fmtOdds(fairU)} @ ${line ?? "?"}</span>`
       : `<span>Fair: Over ${fmtOdds(fairO)} / Under ${fmtOdds(fairU)} @ ${line ?? "?"}.
-         Enter both sharp prices for an edge.</span>`;
+         Enter a Best price to see your edge. Sharp is optional (it tempers the model).</span>`;
   }
 }
 
@@ -255,8 +307,8 @@ function renderHeader(){
     ? `flat $${state.flatUnit}/play`
     : `${KELLY_LABEL[String(state.kellyFraction)] || state.kellyFraction+"×"}-Kelly capped ${(state.params.max_stake_frac*100).toFixed(0)}%`;
   document.getElementById("footnote").innerHTML =
-    `Total-runs negative-binomial model · blends with sharp-book no-vig (${Math.round(state.params.market_blend*100)}/${Math.round((1-state.params.market_blend)*100)}) to temper overconfidence ·
-     bets flagged at ≥ ${(state.minEdge*100).toFixed(0)}% edge · ${stakeDesc} · entries saved on this device.`;
+    `Edge = model fair prob − your Best-book price (shows with just a line + Best price). Sharp is optional: when entered it blends ${Math.round(state.params.market_blend*100)}/${Math.round((1-state.params.market_blend)*100)} to temper the model and confirm the play ·
+     Bet score 0–100 (edge + conviction + sharp) · bets flagged at ≥ ${(state.minEdge*100).toFixed(0)}% edge · ${stakeDesc} · entries saved on this device.`;
 }
 
 function stepDate(delta){
